@@ -1,8 +1,18 @@
 import { useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { Button } from "../index";
 
-function PizzaBlock({ name, imageUrl, sizes, price, types, isLoaded }) {
+function PizzaBlock({
+  id,
+  name,
+  imageUrl,
+  sizes,
+  price,
+  types,
+  onPizzaAdd,
+  addedCount,
+}) {
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(0);
   const availableTypes = ["тонкое", "традиционное"];
@@ -12,6 +22,17 @@ function PizzaBlock({ name, imageUrl, sizes, price, types, isLoaded }) {
   };
   const onSelectType = (index) => {
     setActiveType(index);
+  };
+  const onClickAddPizza = () => {
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: availableSizes[activeSize],
+      type: availableTypes[activeType],
+    };
+    onPizzaAdd(obj);
   };
 
   return (
@@ -50,7 +71,7 @@ function PizzaBlock({ name, imageUrl, sizes, price, types, isLoaded }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <Button onClick={onClickAddPizza} className="button--add" outline>
           <svg
             width="12"
             height="12"
@@ -64,8 +85,8 @@ function PizzaBlock({ name, imageUrl, sizes, price, types, isLoaded }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {addedCount && <i>{addedCount}</i>}
+        </Button>
       </div>
     </div>
   );
@@ -77,13 +98,13 @@ PizzaBlock.propTypes = {
   price: PropTypes.number,
   types: PropTypes.arrayOf(PropTypes.number),
   sizes: PropTypes.arrayOf(PropTypes.number),
-  isLoaded: PropTypes.bool,
+  onPizzaAdd: PropTypes.func,
+  addedCount: PropTypes.number,
 };
 PizzaBlock.defaultProps = {
   name: "Название пиццы",
   price: 0,
   types: [],
   sizes: [],
-  isLoaded: false,
 };
 export default PizzaBlock;
