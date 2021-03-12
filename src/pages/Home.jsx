@@ -64,7 +64,7 @@ function Home() {
                 key={obj.id}
                 {...obj}
                 onPizzaAdd={handlePizzaAdd}
-                addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+                addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
               />
             ))
           : Array(9)
