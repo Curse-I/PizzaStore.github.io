@@ -67,8 +67,6 @@ const cart = (state = initialState, action) => {
         },
       };
       const costOfOnePizza = state.items[action.payload].items[0].price;
-      console.log(costOfOnePizza)
-      //TODO Сделать нормальную работу пицц при переходе в отрицательные значения
       return {
         ...state,
         items: newItems,

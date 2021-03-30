@@ -8,7 +8,6 @@ function Header() {
     totalPrice: cart.totalPrice,
     totalCount: cart.totalCount,
   }));
-  //TODO Сделать удобным просмотр добавленных пицц
   return (
     <div className="header">
       <div className="container">

@@ -31,6 +31,9 @@ const Cart = () => {
   const onMinusItem = (id) => {
     dispatch(minusOneItem(id))
   }
+  // const onDeleteOneTypedPizzas = (id) => {
+  //   dispatch(removeCartItem(id))
+  // }
   return (
     <div className="content">
       <div className="container container--cart">

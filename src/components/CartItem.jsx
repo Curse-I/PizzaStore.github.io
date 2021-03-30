@@ -27,7 +27,7 @@ function CartItem({ id, name, type, size, sellPrice, totalCount, onRemoveItem, o
         </p>
       </div>
       <div className="cart__item-count">
-        <Button onClick={handleMinusItem} className="button--circle cart__item-count-minus" outline>
+        <Button onClick={totalCount !== 1 ? handleMinusItem : handleRemoveItem} className="button--circle cart__item-count-minus" outline>
           <svg
             width="10"
             height="10"
